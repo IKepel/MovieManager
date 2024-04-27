@@ -2,6 +2,7 @@ using Asp.Versioning;
 using Microsoft.OpenApi.Models;
 using Application;
 using Persistence;
+using MovieManager.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,8 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "MovieManager");
     });
 }
+
+app.UseMiddleware<HealthCheckMiddleware>();
 
 app.UseHttpsRedirection();
 
